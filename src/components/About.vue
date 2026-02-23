@@ -12,8 +12,6 @@
         in line for Sally’s Apizza. My background includes working at McKinsey
         in New York and serving as a TechnoServe Fellow in Nairobi, Kenya,
         following my engineering studies at Brown University.
-
-        This is temporary
       </p>
       <p>
         In my bag, I usually carry a well-loved book, well-worn running shoes,
