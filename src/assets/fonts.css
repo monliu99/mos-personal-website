@@ -1,0 +1,20 @@
+/* Computer Modern webfont wiring.
+ * After downloading the fonts from https://checkmyworking.com/cm-web-fonts/,
+ * place the appropriate files in public/fonts/ with these names or update paths below.
+ */
+
+@font-face {
+  font-family: 'Computer Modern Serif';
+  src: url('/fonts/cmunrm.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Computer Modern Sans';
+  src: url('/fonts/cmunss.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
