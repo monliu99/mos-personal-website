@@ -70,7 +70,7 @@ const projects: Project[] = [
     description:
       'A mood-responsive drink recommendation app that uses machine learning to suggest personalized coffee and tea recipes based on how you\'re feeling, your location\'s weather, and time of day.',
     githubUrl: 'https://github.com/monliu99/daily-brew-2.0',
-    liveUrl: 'https://monliu99.github.io/daily-brew-2.0/',
+    liveUrl: 'https://daily-brew-20.vercel.app/',
     tech: 'JavaScript · TensorFlow.js · HTML · CSS',
   },
   {

@@ -28,7 +28,7 @@
           </a>
         </div>
         <p class="interest-body">
-          I am not fast, but I love running. As a member of the Yale SOM Run Club and the New Haven Road Runners, I am often running around East Rock and on the Canal Trail. 
+          I love running outdoors. As the Co-President of the Yale SOM Run Club and a member of the New Haven Road Runners, I am often running around East Rock and on the Canal Trail. 
         </p>
         <ul class="interest-list">
           <li><strong>Recent races:</strong> Amica Newport Half-Marathon</li>
