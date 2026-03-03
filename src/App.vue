@@ -6,7 +6,7 @@ import Interests from './components/Interests.vue'
 import Contact from './components/Contact.vue'
 import AboutSite from './components/AboutSite.vue'
 
-const tabs = ['About Me', 'Projects', 'Interests', 'Contact', 'About This Site'] as const
+const tabs = ['About Me', 'Interests', 'Projects', 'Contact', 'About This Site'] as const
 type Tab = (typeof tabs)[number]
 
 const current = ref<Tab>('About Me')
@@ -64,21 +64,21 @@ const handleTabClick = (tab: Tab) => {
       </section>
 
       <section
-        ref="projectsSection"
-        class="content-section"
-        aria-label="Projects"
-        v-reveal-on-scroll
-      >
-        <Projects />
-      </section>
-
-      <section
         ref="interestsSection"
         class="content-section"
         aria-label="Interests"
         v-reveal-on-scroll
       >
         <Interests />
+      </section>
+
+      <section
+        ref="projectsSection"
+        class="content-section"
+        aria-label="Projects"
+        v-reveal-on-scroll
+      >
+        <Projects />
       </section>
 
       <section
