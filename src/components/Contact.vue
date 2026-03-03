@@ -2,7 +2,7 @@
   <section class="contact">
     <h2>Contact</h2>
     <p class="contact-intro">
-      Or, you can also find me on
+      You can find me on
       <a
         href="https://www.linkedin.com/in/mo-n-liu"
         target="_blank"

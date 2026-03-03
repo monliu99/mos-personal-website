@@ -3,7 +3,7 @@
     <header class="projects-header">
       <h2>Projects</h2>
       <p class="projects-intro">
-        Here are some recent projects I have been working on; you can click on the GitHub logo to check out the details of each project! 
+        Here are some recent projects I have been working on; check them out by clicking the hyperlink in the project title, or take a look at the Github repository by clicking the icon on the top-right corner: 
       </p>
     </header>
 
@@ -14,7 +14,18 @@
         class="project-card"
       >
         <div class="project-heading">
-          <h3>{{ project.name }}</h3>
+          <h3>
+            <a
+              v-if="project.liveUrl"
+              :href="project.liveUrl"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="project-title-link"
+            >
+              {{ project.name }}
+            </a>
+            <span v-else>{{ project.name }}</span>
+          </h3>
           <a
             class="project-link"
             :href="project.githubUrl"
@@ -47,33 +58,35 @@ type Project = {
   name: string
   description: string
   githubUrl: string
+  liveUrl?: string
   tech?: string
 }
 
 const projects: Project[] = [
   {
-    slug: 'example-portfolio',
-    name: 'Example Portfolio Site',
+    slug: 'daily-brew-2-0',
+    name: 'Daily Brew 2.0',
     description:
-      'A minimal personal site built with Vue and TypeScript to showcase work and writing.',
-    githubUrl: 'https://github.com/your-username/example-portfolio',
-    tech: 'Vue · TypeScript · Vite',
+      'A mood-responsive drink recommendation app that uses machine learning to suggest personalized coffee and tea recipes based on how you\'re feeling, your location\'s weather, and time of day.',
+    githubUrl: 'https://github.com/monliu99/daily-brew-2.0',
+    liveUrl: 'https://monliu99.github.io/daily-brew-2.0/',
+    tech: 'JavaScript · TensorFlow.js · HTML · CSS',
   },
   {
-    slug: 'data-viz-dashboard',
-    name: 'Data Viz Dashboard',
+    slug: 'project-2',
+    name: 'Project 2',
     description:
-      'Lightweight dashboard for exploring analytics data with interactive charts.',
-    githubUrl: 'https://github.com/your-username/data-viz-dashboard',
-    tech: 'React · D3 · Node',
+      'Coming soon — stay tuned for details on this project.',
+    githubUrl: 'https://github.com/monliu99/project-2',
+    tech: 'TBD',
   },
   {
-    slug: 'tooling-scripts',
-    name: 'Tooling Scripts',
+    slug: 'project-3',
+    name: 'Project 3',
     description:
-      'A small collection of scripts and utilities that smooth out day-to-day workflows.',
-    githubUrl: 'https://github.com/your-username/tooling-scripts',
-    tech: 'TypeScript · Node',
+      'Coming soon — stay tuned for details on this project.',
+    githubUrl: 'https://github.com/monliu99/project-3',
+    tech: 'TBD',
   },
 ]
 </script>
@@ -125,6 +138,17 @@ const projects: Project[] = [
 .project-heading h3 {
   margin: 0;
   font-size: 1rem;
+}
+
+.project-title-link {
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.project-title-link:hover {
+  color: #124731;
+  text-decoration: underline;
 }
 
 .project-link {

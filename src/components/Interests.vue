@@ -3,7 +3,7 @@
     <header class="interests-header">
       <h2>Interests</h2>
       <p class="interests-intro">
-       There are a few things that I love doing in my free time:
+       There are a few things that I love doing in my free time; click on the icons to check out my profiles:
       </p>
     </header>
 
@@ -33,7 +33,7 @@
         <ul class="interest-list">
           <li><strong>Recent races:</strong> Amica Newport Half-Marathon</li>
           <li>
-            <strong>Favorite routes:</strong> East Rock summit, East Bay bike path (Providence)
+            <strong>Favorite routes:</strong> East Rock summit, East Bay bike path
           </li>
         </ul>
       </article>
