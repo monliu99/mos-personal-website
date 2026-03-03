@@ -27,6 +27,7 @@
             <span v-else>{{ project.name }}</span>
           </h3>
           <a
+            v-if="project.githubUrl"
             class="project-link"
             :href="project.githubUrl"
             target="_blank"
@@ -57,7 +58,7 @@ type Project = {
   slug: string
   name: string
   description: string
-  githubUrl: string
+  githubUrl?: string
   liveUrl?: string
   tech?: string
 }
@@ -77,7 +78,6 @@ const projects: Project[] = [
     name: 'Project 2',
     description:
       'Coming soon — stay tuned for details on this project.',
-    githubUrl: 'https://github.com/monliu99/project-2',
     tech: 'TBD',
   },
   {
@@ -85,7 +85,6 @@ const projects: Project[] = [
     name: 'Project 3',
     description:
       'Coming soon — stay tuned for details on this project.',
-    githubUrl: 'https://github.com/monliu99/project-3',
     tech: 'TBD',
   },
 ]

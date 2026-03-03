@@ -4,6 +4,7 @@
     <p>
       This site is a single-page app built with Vue 3, using
       <strong>&lt;script setup&gt;</strong> and TypeScript, and bundled with Vite.
+      It is deployed and hosted on <strong>Vercel</strong>.
     </p>
   </section>
 </template>
