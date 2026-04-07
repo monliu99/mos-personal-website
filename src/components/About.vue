@@ -28,15 +28,21 @@
 .about {
   display: grid;
   grid-template-columns: auto 1fr;
-  gap: 1.5rem;
+  gap: var(--space-6);
   align-items: flex-start;
 }
 
 .about-photo {
   width: 120px;
   height: 120px;
-  border-radius: 0.9rem;
+  border-radius: var(--radius-md);
   overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  transition: box-shadow var(--transition-base);
+}
+
+.about-photo:hover {
+  box-shadow: var(--shadow-md);
 }
 
 .about-photo img {
@@ -44,29 +50,33 @@
   height: 100%;
   object-fit: cover;
   object-position: center 40%;
-  transition: transform 0.25s ease-out;
+  transition: transform var(--transition-base);
 }
 
 .about-photo:hover img {
-  transform: scale(1.03);
+  transform: scale(1.05);
 }
 
 .about-text {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: var(--space-3);
 }
 
 h2 {
   margin: 0;
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
 }
 
 p {
-  color: #444;
+  color: var(--color-text-secondary);
+  line-height: 1.6;
 }
 
 ul {
-  margin: 0.5rem 0 0;
+  margin: var(--space-2) 0 0;
   padding-left: 1.1rem;
 }
 
@@ -74,6 +84,16 @@ ul {
   .about {
     grid-template-columns: 1fr;
     justify-items: flex-start;
+    gap: var(--space-4);
+  }
+
+  .about-photo {
+    width: 100px;
+    height: 100px;
+  }
+
+  h2 {
+    font-size: 1.25rem;
   }
 }
 </style>

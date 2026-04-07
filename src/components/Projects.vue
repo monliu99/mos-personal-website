@@ -10,7 +10,12 @@
     </header>
 
     <div class="projects-grid">
-      <article v-for="project in projects" :key="project.slug" class="project-card">
+      <article
+        v-for="(project, index) in projects"
+        :key="project.slug"
+        class="project-card"
+        :style="{ animationDelay: `${index * 100}ms` }"
+      >
         <div class="project-heading">
           <h3>
             <a
@@ -96,34 +101,55 @@ const projects: Project[] = [
 .projects-header {
   display: flex;
   flex-direction: column;
-  gap: 0.4rem;
+  gap: var(--space-2);
 }
 
 .projects-intro {
   margin: 0;
-  color: #555;
+  color: var(--color-text-secondary);
 }
 
 .projects-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 1rem;
+  gap: var(--space-4);
 }
 
 .project-card {
   background:
-    linear-gradient(135deg, rgba(18, 71, 49, 0.08), rgba(18, 71, 49, 0.03)),
-    rgba(255, 255, 255, 0.92);
-  border-radius: 0.9rem;
+    linear-gradient(135deg, var(--color-primary-light), rgba(18, 71, 49, 0.03)),
+    var(--color-card-bg);
+  border-radius: var(--radius-md);
   padding: 1rem 1.1rem 0.9rem;
   border: 1px solid rgba(18, 71, 49, 0.16);
+  transition:
+    transform var(--transition-base),
+    box-shadow var(--transition-base);
+  animation: cardEntrance 0.5s ease-out backwards;
+}
+
+.project-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--color-primary-border);
+}
+
+@keyframes cardEntrance {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .project-heading {
   display: flex;
   justify-content: space-between;
   align-items: baseline;
-  gap: 0.5rem;
+  gap: var(--space-2);
   margin-bottom: 0.35rem;
 }
 
@@ -135,32 +161,43 @@ const projects: Project[] = [
 .project-title-link {
   color: inherit;
   text-decoration: none;
-  transition: color 0.2s ease;
+  transition: color var(--transition-base);
 }
 
 .project-title-link:hover {
-  color: #124731;
+  color: var(--color-primary);
   text-decoration: underline;
 }
 
 .project-link {
   font-size: 0.8rem;
-  color: #124731;
+  color: var(--color-primary);
   text-decoration: none;
+  transition:
+    color var(--transition-fast),
+    transform var(--transition-fast);
+  display: inline-flex;
+  align-items: center;
 }
 
 .project-link:hover {
-  text-decoration: underline;
+  text-decoration: none;
+  transform: scale(1.1);
 }
 
 .project-icon {
   width: 18px;
   height: 18px;
+  transition: transform var(--transition-fast);
+}
+
+.project-link:hover .project-icon {
+  transform: scale(1.1);
 }
 
 .project-description {
   margin: 0.1rem 0 0.25rem;
-  color: #444;
+  color: var(--color-text-secondary);
 }
 
 .project-meta {
