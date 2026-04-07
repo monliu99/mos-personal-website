@@ -86,9 +86,7 @@ const handleSubmit = async () => {
   status.value = 'sending'
 
   try {
-    // Replace this URL with the endpoint from your email form service
-    // (for example, a Formspree or Netlify Forms endpoint).
-    const response = await fetch('https://formspree.io/f/your-endpoint-id', {
+    const response = await fetch(import.meta.env.VITE_FORMSPREE_ENDPOINT || 'https://formspree.io/f/your-endpoint-id', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

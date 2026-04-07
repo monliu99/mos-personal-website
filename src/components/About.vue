@@ -11,7 +11,7 @@
         Haven, where I serve as co-president of the SOM Running Club and wait
         in line for Sally’s Apizza. My background includes working at McKinsey
         in New York and serving as a TechnoServe Fellow in Nairobi, Kenya,
-        following my engineering studies at Brown University.
+        following my undergraduate engineering studies at Brown University.
       </p>
       <p>
         In my bag, I usually carry a well-loved book, well-worn running shoes,
