@@ -1,11 +1,14 @@
 /* Computer Modern webfont wiring.
  * After downloading the fonts from https://checkmyworking.com/cm-web-fonts/,
  * place the appropriate files in public/fonts/ with these names or update paths below.
+ *
+ * Fonts converted to WOFF2 will provide better compression (~30% smaller).
+ * Convert WOFF to WOFF2 using: https://www.cafewebmaster.com/online_tools/woff_to_woff2
  */
 
 @font-face {
   font-family: 'Computer Modern Serif';
-  src: url('/fonts/cmunrm.woff') format('woff');
+  src: url('/fonts/cmunrm.woff2') format('woff2'), url('/fonts/cmunrm.woff') format('woff');
   font-weight: 400;
   font-style: normal;
   font-display: swap;
@@ -13,7 +16,7 @@
 
 @font-face {
   font-family: 'Computer Modern Sans';
-  src: url('/fonts/cmunss.woff') format('woff');
+  src: url('/fonts/cmunss.woff2') format('woff2'), url('/fonts/cmunss.woff') format('woff');
   font-weight: 400;
   font-style: normal;
   font-display: swap;

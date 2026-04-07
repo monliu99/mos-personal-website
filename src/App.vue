@@ -54,12 +54,7 @@ const handleTabClick = (tab: Tab) => {
     </header>
 
     <main class="content">
-      <section
-        ref="aboutSection"
-        class="content-section"
-        aria-label="About Me"
-        v-reveal-on-scroll
-      >
+      <section ref="aboutSection" class="content-section" aria-label="About Me" v-reveal-on-scroll>
         <About />
       </section>
 
@@ -81,12 +76,7 @@ const handleTabClick = (tab: Tab) => {
         <Projects />
       </section>
 
-      <section
-        ref="contactSection"
-        class="content-section"
-        aria-label="Contact"
-        v-reveal-on-scroll
-      >
+      <section ref="contactSection" class="content-section" aria-label="Contact" v-reveal-on-scroll>
         <Contact />
       </section>
 
@@ -110,11 +100,8 @@ const handleTabClick = (tab: Tab) => {
 .app {
   min-height: 100vh;
   background-color: #f7f7f7;
-  background-image: linear-gradient(
-      rgba(255, 255, 255, 0.7),
-      rgba(255, 255, 255, 0.7)
-    ),
-    url('/monstera_print.png');
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.7)), url('/monstera_print.png');
   background-repeat: repeat;
   background-size: 320px 320px;
   color: #111111;
@@ -202,7 +189,9 @@ const handleTabClick = (tab: Tab) => {
 .content-section.reveal {
   opacity: 0;
   transform: translateY(12px);
-  transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+  transition:
+    opacity 0.7s ease-out,
+    transform 0.7s ease-out;
 }
 
 .content-section.reveal.is-visible {

@@ -3,16 +3,14 @@
     <header class="projects-header">
       <h2>Projects</h2>
       <p class="projects-intro">
-        Here are some recent projects I have been working on; check them out by clicking the hyperlink in the project title, or take a look at the Github repository by clicking the icon on the top-right corner: 
+        Here are some recent projects I have been working on; check them out by clicking the
+        hyperlink in the project title, or take a look at the Github repository by clicking the icon
+        on the top-right corner:
       </p>
     </header>
 
     <div class="projects-grid">
-      <article
-        v-for="project in projects"
-        :key="project.slug"
-        class="project-card"
-      >
+      <article v-for="project in projects" :key="project.slug" class="project-card">
         <div class="project-heading">
           <h3>
             <a
@@ -68,7 +66,7 @@ const projects: Project[] = [
     slug: 'daily-brew-2-0',
     name: 'Daily Brew 2.0',
     description:
-      'A mood-responsive drink recommendation app that uses machine learning to suggest personalized coffee and tea recipes based on how you\'re feeling, your location\'s weather, and time of day.',
+      "A mood-responsive drink recommendation app that uses machine learning to suggest personalized coffee and tea recipes based on how you're feeling, your location's weather, and time of day.",
     githubUrl: 'https://github.com/monliu99/daily-brew-2.0',
     liveUrl: 'https://daily-brew-20.vercel.app/',
     tech: 'JavaScript · TensorFlow.js · HTML · CSS',
@@ -76,15 +74,13 @@ const projects: Project[] = [
   {
     slug: 'project-2',
     name: 'Project 2',
-    description:
-      'Coming soon — stay tuned for details on this project.',
+    description: 'Coming soon — stay tuned for details on this project.',
     tech: 'TBD',
   },
   {
     slug: 'project-3',
     name: 'Project 3',
-    description:
-      'Coming soon — stay tuned for details on this project.',
+    description: 'Coming soon — stay tuned for details on this project.',
     tech: 'TBD',
   },
 ]
@@ -115,11 +111,8 @@ const projects: Project[] = [
 }
 
 .project-card {
-  background: linear-gradient(
-      135deg,
-      rgba(18, 71, 49, 0.08),
-      rgba(18, 71, 49, 0.03)
-    ),
+  background:
+    linear-gradient(135deg, rgba(18, 71, 49, 0.08), rgba(18, 71, 49, 0.03)),
     rgba(255, 255, 255, 0.92);
   border-radius: 0.9rem;
   padding: 1rem 1.1rem 0.9rem;

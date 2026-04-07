@@ -17,7 +17,7 @@ const revealOnScroll: ObjectDirective = {
       },
       {
         threshold: 0.15,
-      },
+      }
     )
 
     observers.set(el, observer)

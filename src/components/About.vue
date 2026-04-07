@@ -7,18 +7,16 @@
     <div class="about-text">
       <h2>About Me</h2>
       <p>
-        I am currently an MBA student at Yale and a resident of East Rock, New
-        Haven, where I serve as co-president of the SOM Running Club and wait
-        in line for Sally’s Apizza. My background includes working at McKinsey
-        in New York and serving as a TechnoServe Fellow in Nairobi, Kenya,
-        following my undergraduate engineering studies at Brown University.
+        I am currently an MBA student at Yale and a resident of East Rock, New Haven, where I serve
+        as co-president of the SOM Running Club and wait in line for Sally’s Apizza. My background
+        includes working at McKinsey in New York and serving as a TechnoServe Fellow in Nairobi,
+        Kenya, following my undergraduate engineering studies at Brown University.
       </p>
       <p>
-        In my bag, I usually carry a well-loved book, well-worn running shoes,
-        my reMarkable, and a Moleskine journal. You can always ask me about
-        chasing a new PR in half marathon, my love for Rhode Island (and New
-        England in general), my Letterboxd starred movies, or the latest new
-        language I've taken on learning.
+        In my bag, I usually carry a well-loved book, well-worn running shoes, my reMarkable, and a
+        Moleskine journal. You can always ask me about chasing a new PR in half marathon, my love
+        for Rhode Island (and New England in general), my Letterboxd starred movies, or the latest
+        new language I've taken on learning.
       </p>
     </div>
   </section>

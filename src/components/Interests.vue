@@ -3,7 +3,8 @@
     <header class="interests-header">
       <h2>Interests</h2>
       <p class="interests-intro">
-       There are a few things that I love doing in my free time; click on the icons to check out my profiles:
+        There are a few things that I love doing in my free time; click on the icons to check out my
+        profiles:
       </p>
     </header>
 
@@ -19,22 +20,17 @@
             class="interest-icon-link"
           >
             <span class="icon" aria-hidden="true">
-              <img
-                src="/strava_icon.png"
-                alt=""
-                class="icon-img icon-img--strava"
-              />
+              <img src="/strava_icon.png" alt="" class="icon-img icon-img--strava" />
             </span>
           </a>
         </div>
         <p class="interest-body">
-          I love running outdoors. As the Co-President of the Yale SOM Run Club and a member of the New Haven Road Runners, I am often running around East Rock and on the Canal Trail. 
+          I love running outdoors. As the Co-President of the Yale SOM Run Club and a member of the
+          New Haven Road Runners, I am often running around East Rock and on the Canal Trail.
         </p>
         <ul class="interest-list">
           <li><strong>Recent races:</strong> Amica Newport Half-Marathon</li>
-          <li>
-            <strong>Favorite routes:</strong> East Rock summit, East Bay bike path
-          </li>
+          <li><strong>Favorite routes:</strong> East Rock summit, East Bay bike path</li>
         </ul>
       </article>
 
@@ -49,31 +45,35 @@
             class="interest-icon-link"
           >
             <span class="icon" aria-hidden="true">
-              <img
-                src="/goodreads_icon.png"
-                alt=""
-                class="icon-img"
-              />
+              <img src="/goodreads_icon.png" alt="" class="icon-img" />
             </span>
           </a>
         </div>
         <p class="interest-body">
-          I mostly read fiction but have recently ventured into biographies. My favorite authors include Lorrie Moore, Elif Batuman, and Yiyun Li. 
+          I mostly read fiction but have recently ventured into biographies. My favorite authors
+          include Lorrie Moore, Elif Batuman, and Yiyun Li.
         </p>
         <ul class="interest-list">
           <li><strong>Currently reading:</strong> The Book of Goose</li>
-          <li><strong>Recent favorites:</strong> Either/Or, The Sound and the Fury, Emporer of Gladness</li>
+          <li>
+            <strong>Recent favorites:</strong> Either/Or, The Sound and the Fury, Emporer of
+            Gladness
+          </li>
         </ul>
       </article>
 
       <article class="interest-card">
         <h3>Music</h3>
         <p class="interest-body">
-          I grew up playing the piano, and have fallen in love with chamber music in recent years; often, I am at the Yale School of Music chamber series. 
+          I grew up playing the piano, and have fallen in love with chamber music in recent years;
+          often, I am at the Yale School of Music chamber series.
         </p>
         <ul class="interest-list">
           <li><strong>Currently playing:</strong> The Hadyn Trumpet Concerto</li>
-          <li><strong>Favorite composers:</strong> Franz Schubert, Johannes Brahms, Dmitri Shostakovich</li>
+          <li>
+            <strong>Favorite composers:</strong> Franz Schubert, Johannes Brahms, Dmitri
+            Shostakovich
+          </li>
         </ul>
       </article>
     </div>
@@ -107,11 +107,8 @@
 }
 
 .interest-card {
-  background: linear-gradient(
-      135deg,
-      rgba(18, 71, 49, 0.08),
-      rgba(18, 71, 49, 0.03)
-    ),
+  background:
+    linear-gradient(135deg, rgba(18, 71, 49, 0.08), rgba(18, 71, 49, 0.03)),
     rgba(255, 255, 255, 0.92);
   border-radius: 0.9rem;
   padding: 1rem 1.1rem 0.9rem;

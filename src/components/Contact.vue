@@ -3,19 +3,11 @@
     <h2>Contact</h2>
     <p class="contact-intro">
       You can find me on
-      <a
-        href="https://www.linkedin.com/in/mo-n-liu"
-        target="_blank"
-        rel="noopener noreferrer"
+      <a href="https://www.linkedin.com/in/mo-n-liu" target="_blank" rel="noopener noreferrer"
         >LinkedIn</a
       >
       and
-      <a
-        href="https://github.com/monliu99"
-        target="_blank"
-        rel="noopener noreferrer"
-        >GitHub</a
-      >.
+      <a href="https://github.com/monliu99" target="_blank" rel="noopener noreferrer">GitHub</a>.
     </p>
     <p class="contact-intro">
       If you'd like to reach out, leave a note here and I'll get back to you.
@@ -24,37 +16,17 @@
     <form class="contact-form" @submit.prevent="handleSubmit">
       <div class="field-row">
         <label for="name">Name</label>
-        <input
-          id="name"
-          v-model="name"
-          type="text"
-          name="name"
-          autocomplete="name"
-          required
-        />
+        <input id="name" v-model="name" type="text" name="name" autocomplete="name" required />
       </div>
 
       <div class="field-row">
         <label for="email">Email</label>
-        <input
-          id="email"
-          v-model="email"
-          type="email"
-          name="email"
-          autocomplete="email"
-          required
-        />
+        <input id="email" v-model="email" type="email" name="email" autocomplete="email" required />
       </div>
 
       <div class="field-row">
         <label for="message">Message</label>
-        <textarea
-          id="message"
-          v-model="message"
-          name="message"
-          rows="4"
-          required
-        ></textarea>
+        <textarea id="message" v-model="message" name="message" rows="4" required></textarea>
       </div>
 
       <button class="submit" type="submit" :disabled="status === 'sending'">
@@ -86,18 +58,21 @@ const handleSubmit = async () => {
   status.value = 'sending'
 
   try {
-    const response = await fetch(import.meta.env.VITE_FORMSPREE_ENDPOINT || 'https://formspree.io/f/your-endpoint-id', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        Accept: 'application/json',
-      },
-      body: JSON.stringify({
-        name: name.value,
-        email: email.value,
-        message: message.value,
-      }),
-    })
+    const response = await fetch(
+      import.meta.env.VITE_FORMSPREE_ENDPOINT || 'https://formspree.io/f/your-endpoint-id',
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+        },
+        body: JSON.stringify({
+          name: name.value,
+          email: email.value,
+          message: message.value,
+        }),
+      }
+    )
 
     if (!response.ok) {
       throw new Error('Request failed')
@@ -168,7 +143,9 @@ textarea:focus {
   color: #124731;
   font: inherit;
   cursor: pointer;
-  transition: background 0.15s ease, transform 0.1s ease;
+  transition:
+    background 0.15s ease,
+    transform 0.1s ease;
 }
 
 .submit:hover:enabled {
