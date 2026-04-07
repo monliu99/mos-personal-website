@@ -8,7 +8,9 @@
 
 @font-face {
   font-family: 'Computer Modern Serif';
-  src: url('/fonts/cmunrm.woff2') format('woff2'), url('/fonts/cmunrm.woff') format('woff');
+  src:
+    url('/fonts/cmunrm.woff2') format('woff2'),
+    url('/fonts/cmunrm.woff') format('woff');
   font-weight: 400;
   font-style: normal;
   font-display: swap;
@@ -16,7 +18,9 @@
 
 @font-face {
   font-family: 'Computer Modern Sans';
-  src: url('/fonts/cmunss.woff2') format('woff2'), url('/fonts/cmunss.woff') format('woff');
+  src:
+    url('/fonts/cmunss.woff2') format('woff2'),
+    url('/fonts/cmunss.woff') format('woff');
   font-weight: 400;
   font-style: normal;
   font-display: swap;
