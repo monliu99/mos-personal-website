@@ -5,7 +5,6 @@
     </div>
 
     <div class="about-text">
-      <h2>About Me</h2>
       <p>
         I am currently an MBA student at Yale and a resident of East Rock, New Haven, where I serve
         as co-president of the SOM Running Club and wait in line for Sally’s Apizza. My background
@@ -33,11 +32,13 @@
 }
 
 .about-photo {
-  width: 120px;
-  height: 120px;
+  width: 170px;
+  height: 170px;
   border-radius: var(--radius-md);
   overflow: hidden;
   box-shadow: var(--shadow-sm);
+  outline: 3px solid var(--color-primary-light);
+  outline-offset: 3px;
   transition: box-shadow var(--transition-base);
 }
 
@@ -63,21 +64,9 @@
   gap: var(--space-3);
 }
 
-h2 {
-  margin: 0;
-  font-size: 1.5rem;
-  font-weight: 700;
-  letter-spacing: -0.02em;
-}
-
 p {
   color: var(--color-text-secondary);
-  line-height: 1.6;
-}
-
-ul {
-  margin: var(--space-2) 0 0;
-  padding-left: 1.1rem;
+  line-height: 1.75;
 }
 
 @media (max-width: 640px) {
@@ -88,12 +77,8 @@ ul {
   }
 
   .about-photo {
-    width: 100px;
-    height: 100px;
-  }
-
-  h2 {
-    font-size: 1.25rem;
+    width: 130px;
+    height: 130px;
   }
 }
 </style>

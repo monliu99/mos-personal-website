@@ -1,13 +1,5 @@
 <template>
   <section class="interests">
-    <header class="interests-header">
-      <h2>Interests</h2>
-      <p class="interests-intro">
-        There are a few things that I love doing in my free time; click on the icons to check out my
-        profiles:
-      </p>
-    </header>
-
     <div class="interests-grid">
       <article
         v-for="(interest, index) in interests"
@@ -35,7 +27,7 @@
         </p>
         <ul class="interest-list">
           <li v-for="item in interest.details" :key="item.label">
-            <strong>{{ item.label }}:</strong> {{ item.value }}
+            <strong>{{ item.label }}</strong>{{ item.value }}
           </li>
         </ul>
       </article>
@@ -83,7 +75,7 @@ const interests: Interest[] = [
       { label: 'Currently reading', value: 'The Book of Goose' },
       {
         label: 'Recent favorites',
-        value: 'Either/Or, The Sound and the Fury, Emporer of Gladness',
+        value: 'Either/Or, The Sound and the Fury, Emperor of Gladness',
       },
     ],
     icon: {
@@ -114,17 +106,6 @@ const interests: Interest[] = [
   gap: 1.25rem;
 }
 
-.interests-header {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-2);
-}
-
-.interests-intro {
-  margin: 0;
-  color: var(--color-text-secondary);
-}
-
 .interests-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -145,7 +126,7 @@ const interests: Interest[] = [
 }
 
 .interest-card:hover {
-  transform: translateY(-4px);
+  transform: translateY(-2px);
   box-shadow: var(--shadow-md);
   border-color: var(--color-primary-border);
 }
@@ -179,33 +160,36 @@ const interests: Interest[] = [
 
 .interest-list {
   margin: 0;
-  padding-left: 1.1rem;
-  color: var(--color-text-secondary);
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
 }
 
-.interest-link {
-  margin: 0.4rem 0 0;
+.interest-list li {
   font-size: 0.85rem;
+  line-height: 1.4;
 }
 
-.interest-link a {
+.interest-list li strong {
+  display: block;
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
   color: var(--color-primary);
-  text-decoration: none;
+  margin-bottom: 0.1rem;
 }
 
-.interest-link a:hover {
-  text-decoration: underline;
+.interest-list li strong::after {
+  content: none;
 }
 
 .icon {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-}
-
-.icon-svg {
-  width: 18px;
-  height: 18px;
 }
 
 .icon-img {

@@ -1,14 +1,35 @@
 <template>
   <section class="contact">
-    <h2>Contact</h2>
-    <p class="contact-intro">
-      You can find me on
-      <a href="https://www.linkedin.com/in/mo-n-liu" target="_blank" rel="noopener noreferrer"
-        >LinkedIn</a
+    <div class="social-links">
+      <a
+        href="https://www.linkedin.com/in/mo-n-liu"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="social-pill"
       >
-      and
-      <a href="https://github.com/monliu99" target="_blank" rel="noopener noreferrer">GitHub</a>.
-    </p>
+        <svg class="social-icon" viewBox="0 0 24 24" aria-hidden="true">
+          <path
+            fill="currentColor"
+            d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"
+          />
+        </svg>
+        LinkedIn
+      </a>
+      <a
+        href="https://github.com/monliu99"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="social-pill"
+      >
+        <svg class="social-icon" viewBox="0 0 24 24" aria-hidden="true">
+          <path
+            fill="currentColor"
+            d="M12 2C6.5 2 2 6.6 2 12.2c0 4.5 2.9 8.3 6.9 9.6.5.1.7-.2.7-.5v-1.7c-2.8.6-3.4-1.2-3.4-1.2-.4-1.1-.9-1.4-.9-1.4-.8-.6.1-.6.1-.6.9.1 1.4 1 1.4 1 .8 1.4 2.2 1 2.8.8.1-.6.3-1 .6-1.3-2.2-.3-4.4-1.1-4.4-4.9 0-1.1.4-2 1-2.7-.1-.3-.4-1.3.1-2.6 0 0 .8-.3 2.8 1 .8-.2 1.6-.3 2.4-.3.8 0 1.6.1 2.4.3 2-1.3 2.8-1 2.8-1 .5 1.3.2 2.3.1 2.6.6.7 1 1.6 1 2.7 0 3.8-2.3 4.6-4.4 4.9.3.3.6.9.6 1.8v2.6c0 .3.2.6.7.5 4-1.3 6.9-5.1 6.9-9.6C22 6.6 17.5 2 12 2Z"
+          />
+        </svg>
+        GitHub
+      </a>
+    </div>
     <p class="contact-intro">
       If you'd like to reach out, leave a note here and I'll get back to you.
     </p>
@@ -64,12 +85,25 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, onUnmounted } from 'vue'
 
 const name = ref('')
 const email = ref('')
 const message = ref('')
 const status = ref<'idle' | 'sending' | 'success' | 'error'>('idle')
+
+let dismissTimer: ReturnType<typeof setTimeout> | null = null
+
+const scheduleDismiss = () => {
+  if (dismissTimer) clearTimeout(dismissTimer)
+  dismissTimer = setTimeout(() => {
+    status.value = 'idle'
+  }, 5000)
+}
+
+onUnmounted(() => {
+  if (dismissTimer) clearTimeout(dismissTimer)
+})
 
 const handleSubmit = async () => {
   if (!name.value || !email.value || !message.value) return
@@ -98,11 +132,14 @@ const handleSubmit = async () => {
     }
 
     status.value = 'success'
+    scheduleDismiss()
     name.value = ''
     email.value = ''
     message.value = ''
   } catch (e) {
+    console.error('Form submission failed:', e)
     status.value = 'error'
+    scheduleDismiss()
   }
 }
 </script>
@@ -194,6 +231,11 @@ textarea:focus {
   transform: none;
 }
 
+.submit:focus-visible {
+  outline: 2px solid white;
+  outline-offset: -4px;
+}
+
 .button-content {
   display: inline-flex;
   align-items: center;
@@ -282,19 +324,42 @@ textarea:focus {
   transform: translateY(8px);
 }
 
-.contact-links {
-  margin: var(--space-1) 0 0;
-  font-size: 0.9rem;
+.social-links {
+  display: flex;
+  gap: var(--space-2);
+  flex-wrap: wrap;
 }
 
-.contact-links a {
+.social-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: 0.4rem 0.9rem;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--color-primary-border);
+  background: var(--color-primary-light);
   color: var(--color-primary);
+  font-size: 0.9rem;
+  font-family: inherit;
+  font-weight: 500;
   text-decoration: none;
-  transition: color var(--transition-fast);
+  transition: all var(--transition-fast);
 }
 
-.contact-links a:hover {
-  color: var(--color-text);
-  text-decoration: underline;
+.social-pill:hover {
+  background: var(--color-primary-hover);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-sm);
+}
+
+.social-pill:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+.social-icon {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
 }
 </style>

@@ -1,14 +1,5 @@
 <template>
   <section class="projects">
-    <header class="projects-header">
-      <h2>Projects</h2>
-      <p class="projects-intro">
-        Here are some recent projects I have been working on; check them out by clicking the
-        hyperlink in the project title, or take a look at the Github repository by clicking the icon
-        on the top-right corner:
-      </p>
-    </header>
-
     <div class="projects-grid">
       <article
         v-for="(project, index) in projects"
@@ -76,18 +67,6 @@ const projects: Project[] = [
     liveUrl: 'https://daily-brew-20.vercel.app/',
     tech: 'JavaScript · TensorFlow.js · HTML · CSS',
   },
-  {
-    slug: 'project-2',
-    name: 'Project 2',
-    description: 'Coming soon — stay tuned for details on this project.',
-    tech: 'TBD',
-  },
-  {
-    slug: 'project-3',
-    name: 'Project 3',
-    description: 'Coming soon — stay tuned for details on this project.',
-    tech: 'TBD',
-  },
 ]
 </script>
 
@@ -96,17 +75,6 @@ const projects: Project[] = [
   display: flex;
   flex-direction: column;
   gap: 1.25rem;
-}
-
-.projects-header {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-2);
-}
-
-.projects-intro {
-  margin: 0;
-  color: var(--color-text-secondary);
 }
 
 .projects-grid {
@@ -129,7 +97,7 @@ const projects: Project[] = [
 }
 
 .project-card:hover {
-  transform: translateY(-4px);
+  transform: translateY(-2px);
   box-shadow: var(--shadow-md);
   border-color: var(--color-primary-border);
 }
