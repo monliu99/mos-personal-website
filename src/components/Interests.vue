@@ -1,5 +1,6 @@
 <template>
   <section class="interests">
+    <h2 class="section-title">Interests</h2>
     <div class="interests-grid">
       <article
         v-for="(interest, index) in interests"
@@ -7,9 +8,10 @@
         class="interest-card"
         :style="{ animationDelay: `${index * 100}ms` }"
       >
-        <div class="interest-heading" v-if="interest.icon">
+        <div class="interest-heading">
           <h3>{{ interest.title }}</h3>
           <a
+            v-if="interest.icon"
             :href="interest.icon.url"
             target="_blank"
             rel="noopener noreferrer"
@@ -21,15 +23,9 @@
             </span>
           </a>
         </div>
-        <h3 v-else>{{ interest.title }}</h3>
         <p class="interest-body">
           {{ interest.description }}
         </p>
-        <ul class="interest-list">
-          <li v-for="item in interest.details" :key="item.label">
-            <strong>{{ item.label }}</strong>{{ item.value }}
-          </li>
-        </ul>
       </article>
     </div>
   </section>
@@ -100,6 +96,13 @@ const interests: Interest[] = [
 </script>
 
 <style scoped>
+.section-title {
+  margin: 0 0 1rem;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--color-text);
+}
+
 .interests {
   display: flex;
   flex-direction: column;
@@ -151,39 +154,15 @@ const interests: Interest[] = [
 
 .interest-card h3 {
   margin: 0 0 0.25rem;
+  font-size: 1.1rem;
+  font-weight: 600;
 }
 
 .interest-body {
-  margin: 0 0 0.4rem;
-  color: var(--color-text-secondary);
-}
-
-.interest-list {
   margin: 0;
-  padding: 0;
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: 0.4rem;
-}
-
-.interest-list li {
-  font-size: 0.85rem;
-  line-height: 1.4;
-}
-
-.interest-list li strong {
-  display: block;
-  font-size: 0.72rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  color: var(--color-primary);
-  margin-bottom: 0.1rem;
-}
-
-.interest-list li strong::after {
-  content: none;
+  color: var(--color-text-secondary);
+  font-size: 1rem;
+  line-height: 1.6;
 }
 
 .icon {

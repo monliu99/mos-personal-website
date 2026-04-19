@@ -1,5 +1,6 @@
 <template>
   <section class="contact">
+    <h2 class="section-title">Contact</h2>
     <div class="social-links">
       <a
         href="https://www.linkedin.com/in/mo-n-liu"
@@ -145,6 +146,13 @@ const handleSubmit = async () => {
 </script>
 
 <style scoped>
+.section-title {
+  margin: 0 0 1rem;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--color-text);
+}
+
 .contact {
   display: flex;
   flex-direction: column;
@@ -154,6 +162,8 @@ const handleSubmit = async () => {
 .contact-intro {
   margin: 0;
   color: var(--color-text-secondary);
+  font-size: 1rem;
+  line-height: 1.6;
 }
 
 .contact-form {
@@ -361,5 +371,23 @@ textarea:focus {
   width: 16px;
   height: 16px;
   flex-shrink: 0;
+}
+
+@media (max-width: 640px) {
+  input,
+  textarea {
+    padding: 0.75rem 0.8rem;
+    font-size: 1rem;
+  }
+
+  .submit {
+    padding: 0.75rem 1.5rem;
+    min-height: 48px;
+  }
+
+  .social-pill {
+    padding: 0.6rem 1rem;
+    min-height: 44px;
+  }
 }
 </style>

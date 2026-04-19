@@ -1,5 +1,6 @@
 <template>
   <section class="projects">
+    <h2 class="section-title">Projects</h2>
     <div class="projects-grid">
       <article
         v-for="(project, index) in projects"
@@ -36,6 +37,15 @@
             </svg>
           </a>
         </div>
+        <a
+          v-if="project.liveUrl"
+          :href="project.liveUrl"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="demo-link"
+        >
+          View Demo →
+        </a>
         <p class="project-description">
           {{ project.description }}
         </p>
@@ -59,10 +69,19 @@ type Project = {
 
 const projects: Project[] = [
   {
+    slug: 'parity',
+    name: 'Parity',
+    description:
+      "Most couples don't lack budgeting tools — they lack a shared way to talk about money. Parity is an AI-native tool that gives partners a unified view of their finances and surfaces what actually matters, so the conversation can move from spreadsheets to what's next.",
+    githubUrl: 'https://github.com/monliu99/parity-app',
+    liveUrl: 'https://withparity.vercel.app',
+    tech: 'Next.js 16 · TypeScript · Prisma · Tailwind CSS',
+  },
+  {
     slug: 'daily-brew-2-0',
     name: 'Daily Brew 2.0',
     description:
-      "A mood-responsive drink recommendation app that uses machine learning to suggest personalized coffee and tea recipes based on how you're feeling, your location's weather, and time of day.",
+      "Some mornings call for something gentle, others call for something stronger. Daily Brew reads your mood, checks the weather outside your window, and suggests a coffee or tea recipe to match how you're feeling. Originally built as a side project in college and recently updated with AI-powered recommendations, it's a tool that believes the right cup can change the trajectory of your morning.",
     githubUrl: 'https://github.com/monliu99/daily-brew-2.0',
     liveUrl: 'https://daily-brew-20.vercel.app/',
     tech: 'JavaScript · TensorFlow.js · HTML · CSS',
@@ -71,6 +90,13 @@ const projects: Project[] = [
 </script>
 
 <style scoped>
+.section-title {
+  margin: 0 0 1rem;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--color-text);
+}
+
 .projects {
   display: flex;
   flex-direction: column;
@@ -78,12 +104,14 @@ const projects: Project[] = [
 }
 
 .projects-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  display: flex;
+  flex-direction: column;
   gap: var(--space-4);
 }
 
 .project-card {
+  display: flex;
+  flex-direction: column;
   background:
     linear-gradient(135deg, var(--color-primary-light), rgba(18, 71, 49, 0.03)),
     var(--color-card-bg);
@@ -123,7 +151,8 @@ const projects: Project[] = [
 
 .project-heading h3 {
   margin: 0;
-  font-size: 1rem;
+  font-size: 1.1rem;
+  font-weight: 600;
 }
 
 .project-title-link {
@@ -154,8 +183,8 @@ const projects: Project[] = [
 }
 
 .project-icon {
-  width: 18px;
-  height: 18px;
+  width: 20px;
+  height: 20px;
   transition: transform var(--transition-fast);
 }
 
@@ -163,13 +192,35 @@ const projects: Project[] = [
   transform: scale(1.1);
 }
 
+.demo-link {
+  display: inline-block;
+  margin-top: 0.1rem;
+  margin-bottom: 0.4rem;
+  font-size: 0.8rem;
+  color: var(--color-primary);
+  text-decoration: none;
+  font-weight: 500;
+  transition:
+    color var(--transition-fast),
+    transform var(--transition-fast);
+}
+
+.demo-link:hover {
+  color: var(--color-primary-hover);
+  text-decoration: underline;
+  transform: translateX(2px);
+}
+
 .project-description {
-  margin: 0.1rem 0 0.25rem;
+  margin: 0.1rem 0 0.4rem;
   color: var(--color-text-secondary);
+  font-size: 1rem;
+  line-height: 1.6;
 }
 
 .project-meta {
   margin: 0;
+  margin-top: auto;
   font-size: 0.8rem;
   color: #5b7265;
 }
@@ -178,6 +229,22 @@ const projects: Project[] = [
   .project-heading {
     flex-direction: column;
     align-items: flex-start;
+    gap: var(--space-3);
+  }
+
+  .project-link {
+    padding: 0.5rem;
+    margin: -0.5rem;
+    min-height: 44px;
+    min-width: 44px;
+    justify-content: center;
+  }
+
+  .demo-link {
+    padding: 0.5rem 0;
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
   }
 }
 </style>
