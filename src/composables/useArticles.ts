@@ -14,29 +14,34 @@ const defaultRender = md.renderer.rules.image || function(tokens, idx, options, 
 
 md.renderer.rules.image = function (tokens, idx, options, env, self) {
   const token = tokens[idx]
-  const src = token.attrGet('src')
-  const alt = token.content
+  if (!token) return defaultRender(tokens, idx, options, env, self)
+
+  const src = token.attrGet('src') ?? ''
+  const alt = token.content ?? ''
   const nextIdx = idx + 1
 
   // Check if next token is a paragraph opening with italic text (caption)
-  if (nextIdx < tokens.length && tokens[nextIdx].type === 'paragraph_open') {
+  const nextToken = tokens[nextIdx]
+  if (nextIdx < tokens.length && nextToken?.type === 'paragraph_open') {
     const nextNextIdx = nextIdx + 1
+    const nextNextToken = tokens[nextNextIdx]
     if (
       nextNextIdx < tokens.length &&
-      tokens[nextNextIdx].type === 'inline' &&
-      tokens[nextNextIdx].children &&
-      tokens[nextNextIdx].children?.length === 1 &&
-      tokens[nextNextIdx].children[0].type === 'em_open'
+      nextNextToken?.type === 'inline' &&
+      nextNextToken.children &&
+      nextNextToken.children?.length === 1 &&
+      nextNextToken.children[0]?.type === 'em_open'
     ) {
       // Extract caption text
-      const captionToken = tokens[nextNextIdx].children[2] // Text inside em
-      const caption = captionToken ? captionToken.content : ''
+      const captionToken = nextNextToken.children[2] // Text inside em
+      const caption = captionToken ? captionToken.content ?? '' : ''
 
       // Skip the caption paragraph tokens so they don't render separately
-      tokens[nextIdx].hidden = true
-      tokens[nextNextIdx].hidden = true
-      if (nextNextIdx + 1 < tokens.length) {
-        tokens[nextNextIdx + 1].hidden = true // paragraph_close
+      nextToken.hidden = true
+      nextNextToken.hidden = true
+      const paragraphCloseToken = tokens[nextNextIdx + 1]
+      if (paragraphCloseToken) {
+        paragraphCloseToken.hidden = true // paragraph_close
       }
 
       return `<figure class="article-figure">
@@ -89,7 +94,10 @@ export function useArticles() {
 
       const article: Article = {
         meta: {
-          ...meta,
+          title: meta.title ?? '',
+          date: meta.date ?? '',
+          topics: meta.topics ?? [],
+          description: meta.description ?? '',
           slug,
         },
         content,
@@ -121,7 +129,8 @@ function parseFrontmatter(markdown: string): { meta: Partial<ArticleMeta>; conte
 
   if (match) {
     const frontmatterText = match[1]
-    const content = match[2]
+    if (!frontmatterText) return { meta: {}, content: markdown }
+    const content = match[2] ?? markdown
 
     const meta: Partial<ArticleMeta> = {}
 
@@ -131,7 +140,7 @@ function parseFrontmatter(markdown: string): { meta: Partial<ArticleMeta>; conte
       const colonIndex = line.indexOf(':')
       if (colonIndex > 0) {
         const key = line.slice(0, colonIndex).trim()
-        let value = line.slice(colonIndex + 1).trim()
+        let value: string | string[] = line.slice(colonIndex + 1).trim()
 
         // Handle array values
         if (value.startsWith('[') && value.endsWith(']')) {
@@ -155,11 +164,11 @@ function parseFrontmatter(markdown: string): { meta: Partial<ArticleMeta>; conte
 
   // No frontmatter, extract title from first heading
   const titleMatch = markdown.match(/^#\s+(.+)$/m)
-  const title = titleMatch ? titleMatch[1] : ''
+  const title = titleMatch?.[1] ?? ''
   const content = markdown.replace(/^#\s+.+$/m, '').trim()
 
   return {
-    meta: { title: title || undefined },
+    meta: { title },
     content,
   }
 }
