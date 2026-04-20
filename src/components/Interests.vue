@@ -120,7 +120,7 @@ const interests: Interest[] = [
     linear-gradient(135deg, var(--color-primary-light), rgba(18, 71, 49, 0.03)),
     var(--color-card-bg);
   border-radius: var(--radius-md);
-  padding: 1rem 1.1rem 0.9rem;
+  padding: 1rem;
   border: 1px solid rgba(18, 71, 49, 0.16);
   transition:
     transform var(--transition-base),
@@ -195,8 +195,30 @@ const interests: Interest[] = [
 }
 
 @media (max-width: 640px) {
+  .section-title {
+    font-size: 1.3rem;
+  }
+
   .interests-grid {
     grid-template-columns: 1fr;
+    gap: var(--space-3);
+  }
+
+  .interest-card {
+    padding: var(--space-3);
+  }
+
+  .interest-card h3 {
+    font-size: 1rem;
+  }
+
+  .interest-body {
+    font-size: 0.95rem;
+  }
+
+  .icon-img {
+    width: 18px;
+    height: 18px;
   }
 }
 </style>

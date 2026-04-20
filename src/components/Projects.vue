@@ -116,7 +116,7 @@ const projects: Project[] = [
     linear-gradient(135deg, var(--color-primary-light), rgba(18, 71, 49, 0.03)),
     var(--color-card-bg);
   border-radius: var(--radius-md);
-  padding: 1rem 1.1rem 0.9rem;
+  padding: 1rem;
   border: 1px solid rgba(18, 71, 49, 0.16);
   transition:
     transform var(--transition-base),
@@ -226,10 +226,16 @@ const projects: Project[] = [
 }
 
 @media (max-width: 640px) {
+  .project-card {
+    padding: var(--space-3);
+  }
+
   .project-heading {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: var(--space-3);
+    gap: var(--space-2);
+  }
+
+  .project-heading h3 {
+    font-size: 1rem;
   }
 
   .project-link {
@@ -245,6 +251,15 @@ const projects: Project[] = [
     min-height: 44px;
     display: inline-flex;
     align-items: center;
+    font-size: 0.78rem;
+  }
+
+  .project-description {
+    font-size: 0.95rem;
+  }
+
+  .project-meta {
+    font-size: 0.75rem;
   }
 }
 </style>

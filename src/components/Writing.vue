@@ -79,7 +79,7 @@ const writing: WritingPiece[] = [
 }
 
 .writing-piece {
-  padding: 1rem 1.1rem 0.9rem;
+  padding: 1rem;
   background:
     linear-gradient(135deg, var(--color-primary-light), rgba(18, 71, 49, 0.03)),
     var(--color-card-bg);
@@ -149,5 +149,29 @@ const writing: WritingPiece[] = [
   background: var(--color-primary-light);
   color: var(--color-primary);
   font-weight: 500;
+}
+
+@media (max-width: 640px) {
+  .writing-piece {
+    padding: var(--space-3);
+  }
+
+  .piece-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-1);
+  }
+
+  .piece-date {
+    font-size: 0.75rem;
+  }
+
+  .writing-piece h3 {
+    font-size: 1rem;
+  }
+
+  .piece-description {
+    font-size: 0.95rem;
+  }
 }
 </style>

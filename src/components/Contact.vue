@@ -374,20 +374,43 @@ textarea:focus {
 }
 
 @media (max-width: 640px) {
+  .section-title {
+    font-size: 1.3rem;
+  }
+
+  .contact-intro {
+    font-size: 0.95rem;
+  }
+
+  label {
+    font-size: 0.8rem;
+  }
+
   input,
   textarea {
-    padding: 0.75rem 0.8rem;
-    font-size: 1rem;
+    padding: 0.65rem 0.7rem;
+    font-size: 0.98rem;
   }
 
   .submit {
-    padding: 0.75rem 1.5rem;
-    min-height: 48px;
+    padding: 0.7rem 1.3rem;
+    min-height: 46px;
+    font-size: 0.9rem;
   }
 
   .social-pill {
-    padding: 0.6rem 1rem;
-    min-height: 44px;
+    padding: 0.55rem 0.9rem;
+    min-height: 42px;
+    font-size: 0.85rem;
+  }
+
+  .social-icon {
+    width: 15px;
+    height: 15px;
+  }
+
+  .status {
+    font-size: 0.8rem;
   }
 }
 </style>

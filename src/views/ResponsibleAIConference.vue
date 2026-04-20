@@ -146,19 +146,9 @@ onMounted(async () => {
   text-align: center;
 }
 
-@media (max-width: 768px) {
-  .site-header {
-    max-width: 100%;
-  }
-
-  .content {
-    max-width: 100%;
-  }
-}
-
 @media (max-width: 640px) {
   .article {
-    padding: var(--space-6) var(--space-4);
+    padding: var(--space-5) var(--space-3);
   }
 
   .back-link {
@@ -169,19 +159,19 @@ onMounted(async () => {
   }
 
   .article-title {
-    font-size: 1.5rem;
+    font-size: 1.4rem;
   }
 
   .article-content {
-    padding: var(--space-6) var(--space-5);
+    padding: var(--space-5) var(--space-4);
   }
 
   .markdown-body :deep(p) {
-    font-size: 1rem;
+    font-size: 0.98rem;
   }
 
   .markdown-body :deep(.article-figure) {
-    margin: var(--space-5) 0;
+    margin: var(--space-4) 0;
   }
 }
 </style>

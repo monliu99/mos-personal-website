@@ -81,15 +81,25 @@ p {
 }
 
 @media (max-width: 640px) {
+  .section-title {
+    font-size: 1.3rem;
+    margin-bottom: var(--space-4);
+  }
+
   .about {
     grid-template-columns: 1fr;
     justify-items: flex-start;
-    gap: var(--space-5);
+    gap: var(--space-4);
   }
 
   .about-photo {
-    width: 120px;
-    height: 120px;
+    width: 100px;
+    height: 100px;
+  }
+
+  p {
+    font-size: 0.98rem;
+    line-height: 1.65;
   }
 }
 </style>
