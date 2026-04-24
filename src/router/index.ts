@@ -1,19 +1,11 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import type { RouteRecordRaw } from 'vue-router'
 
-// Lazy load article views
-const ResponsibleAIConference = () => import('../views/ResponsibleAIConference.vue')
-
 const routes: RouteRecordRaw[] = [
   {
     path: '/',
     name: 'home',
     component: () => import('../Home.vue'),
-  },
-  {
-    path: '/writing/responsible-ai-conference',
-    name: 'article-responsible-ai-conference',
-    component: ResponsibleAIConference,
   },
 ]
 

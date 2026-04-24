@@ -90,7 +90,7 @@ const projects: Project[] = [
     slug: 'mos-library',
     name: "Mo's Library",
     description:
-      "I built my own search engine because I wanted to see what happens when you give a curiosity-driven mind the power of instant, typo-tolerant search over anything it cares about. Mo's Library is powered by Meilisearch and makes finding things feel less like querying a database and more like actually remembering where you left it.",
+      "I've always had a habit of remembering a passage but forgetting which book it came from. Mo's Library is my own search engine for my bookshelf — powered by Meilisearch so it's fast, forgiving of typos, and actually useful when you're working from half-remembered fragments instead of exact titles.",
     githubUrl: 'https://github.com/monliu99/mos-library',
     liveUrl: 'https://mos-library.vercel.app/',
     tech: 'Meilisearch · InstantSearch · Vanilla JS · Vercel',

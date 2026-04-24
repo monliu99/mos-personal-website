@@ -48,12 +48,9 @@ interface WritingPiece {
 
 const writing: WritingPiece[] = [
   {
-    title: "Reflections from Yale SOM's Responsible AI Conference",
-    description:
-      'After serving on the leadership team for Yale SOM\'s Responsible AI Conference, I reflect on the balance between safety and enabling extraordinary things.',
-    date: 'April 19, 2026',
-    routeName: 'article-responsible-ai-conference',
-    topics: ['AI Safety', 'Red-teaming', 'Consumer Protection'],
+    title: 'More to come…',
+    description: 'Working on a few pieces — check back soon.',
+    date: '',
   },
 ]
 </script>
