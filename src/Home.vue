@@ -3,10 +3,9 @@ import { ref, onMounted, onUnmounted } from 'vue'
 import About from './components/About.vue'
 import Projects from './components/Projects.vue'
 import Interests from './components/Interests.vue'
-import Writing from './components/Writing.vue'
 import Contact from './components/Contact.vue'
 
-const tabs = ['About Me', 'Projects', 'Writing', 'Interests', 'Contact'] as const
+const tabs = ['About Me', 'Projects', 'Interests', 'Contact'] as const
 type Tab = (typeof tabs)[number]
 
 const current = ref<Tab>('About Me')
@@ -14,14 +13,12 @@ const current = ref<Tab>('About Me')
 const aboutSection = ref<HTMLElement | null>(null)
 const projectsSection = ref<HTMLElement | null>(null)
 const interestsSection = ref<HTMLElement | null>(null)
-const writingSection = ref<HTMLElement | null>(null)
 const contactSection = ref<HTMLElement | null>(null)
 
 const sectionByTab: Record<Tab, typeof aboutSection> = {
   'About Me': aboutSection,
   Projects: projectsSection,
   Interests: interestsSection,
-  Writing: writingSection,
   Contact: contactSection,
 }
 
@@ -89,15 +86,6 @@ onUnmounted(() => {
         v-reveal-on-scroll
       >
         <Projects />
-      </section>
-
-      <section
-        ref="writingSection"
-        class="content-section"
-        aria-label="Writing"
-        v-reveal-on-scroll
-      >
-        <Writing />
       </section>
 
       <section

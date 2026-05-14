@@ -7,17 +7,15 @@
 
     <div class="about-text">
       <p>
-        I'm an MBA student at Yale, living in East Rock, where I co-lead the SOM Run Club and have
-        strong feelings about the New Haven-ish pizza at Atticus Market. Before this there was
-        McKinsey in New York and a fellowship with TechnoServe in Nairobi, and before that Brown,
-        where I studied engineering and sailed on the varsity women's team (Go Bruno!).
+        I'm a Yale MBA student building toward a career in product management, with a background that
+        spans engineering design, strategic deployment, and go-to-market — an engineering degree from
+        Brown, McKinsey in New York, and a TechnoServe fellowship in Nairobi. The projects below are things I built myself to solve problems that I see in my daily life,
+        integrating AI tools that I continuously learn about and mostly powered by Claude Code.
       </p>
       <p>
-        In my bag you will find a book that's been read too many times, running shoes that have gone
-        too many miles, a reMarkable, and a MacBook that's too old. You can ask me about half
-        marathons and the PR I'm always chasing, or about Rhode Island and the particular way it
-        feels like home, or about the movies I've starred on Letterboxd. I'm also trying to learn to
-        bake sourdough, which is going about as well as you'd expect.
+        Outside of that, I co-lead the SOM Run Club, have strong opinions about New Haven pizza, and
+        keep a Letterboxd account I take perhaps too seriously. I grew up in Beijing, lived in New
+        England for the past decade, and love to explore corners of the world.
       </p>
     </div>
   </section>
