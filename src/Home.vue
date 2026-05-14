@@ -56,15 +56,22 @@ onMounted(() => {
   const initialTab = pathToTab[route.path] ?? 'About Me'
   current.value = initialTab
 
+  let observerActive = initialTab === 'About Me'
+
   nextTick(() => {
     if (initialTab !== 'About Me') {
-      sectionByTab[initialTab].value?.scrollIntoView({ behavior: 'instant', block: 'start' })
+      const el = sectionByTab[initialTab].value
+      if (el) {
+        window.scrollTo({ top: el.offsetTop, behavior: 'instant' })
+      }
     }
+    setTimeout(() => { observerActive = true }, 200)
   })
 
   const entries = Object.entries(sectionByTab) as [Tab, typeof aboutSection][]
   observer = new IntersectionObserver(
     (observed) => {
+      if (!observerActive) return
       for (const entry of observed) {
         if (entry.isIntersecting) {
           const matched = entries.find(([, r]) => r.value === entry.target)
