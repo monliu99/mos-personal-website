@@ -58,15 +58,17 @@ onMounted(() => {
 
   let observerActive = initialTab === 'About Me'
 
-  nextTick(() => {
-    if (initialTab !== 'About Me') {
+  if (initialTab !== 'About Me') {
+    setTimeout(() => {
       const el = sectionByTab[initialTab].value
       if (el) {
-        window.scrollTo({ top: el.offsetTop, behavior: 'instant' })
+        window.scrollTo(0, el.getBoundingClientRect().top + window.scrollY)
       }
-    }
+      setTimeout(() => { observerActive = true }, 200)
+    }, 50)
+  } else {
     setTimeout(() => { observerActive = true }, 200)
-  })
+  }
 
   const entries = Object.entries(sectionByTab) as [Tab, typeof aboutSection][]
   observer = new IntersectionObserver(
