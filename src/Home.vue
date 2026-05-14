@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { ref, onMounted, onUnmounted } from 'vue'
+import { ref, onMounted, onUnmounted, nextTick } from 'vue'
+import { useRouter, useRoute } from 'vue-router'
 import About from './components/About.vue'
 import Projects from './components/Projects.vue'
 import Interests from './components/Interests.vue'
@@ -7,6 +8,24 @@ import Contact from './components/Contact.vue'
 
 const tabs = ['About Me', 'Projects', 'Interests', 'Contact'] as const
 type Tab = (typeof tabs)[number]
+
+const router = useRouter()
+const route = useRoute()
+
+const tabToPath: Record<Tab, string> = {
+  'About Me': '/',
+  Projects: '/projects',
+  Interests: '/interests',
+  Contact: '/contact',
+}
+
+const pathToTab: Record<string, Tab> = {
+  '/': 'About Me',
+  '/about': 'About Me',
+  '/projects': 'Projects',
+  '/interests': 'Interests',
+  '/contact': 'Contact',
+}
 
 const current = ref<Tab>('About Me')
 
@@ -24,6 +43,7 @@ const sectionByTab: Record<Tab, typeof aboutSection> = {
 
 const handleTabClick = (tab: Tab) => {
   current.value = tab
+  router.push(tabToPath[tab])
   const el = sectionByTab[tab].value
   if (el) {
     el.scrollIntoView({ behavior: 'smooth', block: 'start' })
@@ -33,13 +53,25 @@ const handleTabClick = (tab: Tab) => {
 let observer: IntersectionObserver | null = null
 
 onMounted(() => {
+  const initialTab = pathToTab[route.path] ?? 'About Me'
+  current.value = initialTab
+
+  nextTick(() => {
+    if (initialTab !== 'About Me') {
+      sectionByTab[initialTab].value?.scrollIntoView({ behavior: 'instant', block: 'start' })
+    }
+  })
+
   const entries = Object.entries(sectionByTab) as [Tab, typeof aboutSection][]
   observer = new IntersectionObserver(
     (observed) => {
       for (const entry of observed) {
         if (entry.isIntersecting) {
           const matched = entries.find(([, r]) => r.value === entry.target)
-          if (matched) current.value = matched[0]
+          if (matched) {
+            current.value = matched[0]
+            router.replace(tabToPath[matched[0]])
+          }
         }
       }
     },
