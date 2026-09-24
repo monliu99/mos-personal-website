@@ -137,12 +137,11 @@ type Project = {
 
 const projects: Project[] = [
   {
-    slug: 'parity',
-    name: 'Parity',
+    slug: 'stealth-startup',
+    name: 'Stealth Startup',
     description:
-      "Most couples don't lack budgeting tools — they lack a shared way to talk about money. Parity is an AI-native financial operating system for partners — it aggregates accounts, categorizes transactions, and generates budgets and monthly reviews. But it also helps you build a shared life plan, and gives you an AI with full context on your finances to ask the questions that feel too big for a spreadsheet.",
-    githubUrl: 'https://github.com/monliu99/parity-app',
-    liveUrl: 'https://withparity.vercel.app',
+      "Most couples don't lack budgeting tools — they lack a shared way to talk about money. I'm building an AI-native co-pilot for couples' financial planning: shared visibility, AI-generated budgets and reviews, and an assistant grounded in the couple's own data. Currently in alpha with 10 users. Happy to share more in conversation.",
+    wip: true,
     tech: 'Next.js for the web app, Claude for LLM-powered financial insights and planning, Prisma for the database, Tailwind for styling.',
     category: 'ai',
   },
