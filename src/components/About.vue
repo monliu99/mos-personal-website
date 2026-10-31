@@ -7,10 +7,13 @@
 
     <div class="about-text">
       <p>
-        I'm a Yale MBA student building toward a career in product management, with a background that
-        spans engineering design, strategic deployment, and go-to-market — an engineering degree from
-        Brown, McKinsey in New York, and a TechnoServe fellowship in Nairobi. The projects below are things I built myself to solve problems that I see in my daily life,
-        integrating AI tools that I continuously learn about and mostly powered by Claude Code.
+        I'm a Yale MBA student building toward product roles at AI companies, whether in product
+        management, technical program management, or deployment, with a background that spans
+        engineering design, strategic deployment, and go-to-market — an engineering degree from
+        Brown, McKinsey in New York, and a TechnoServe fellowship in Nairobi. The projects below are
+        a mix of products I built myself to solve problems I see in my daily life, mostly powered by
+        Claude Code and the AI tools I keep learning about, along with research and data work from
+        my coursework at Yale.
       </p>
       <p>
         Outside of that, I co-lead the SOM Run Club, have strong opinions about New Haven pizza, and

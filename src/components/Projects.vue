@@ -1,14 +1,14 @@
 <template>
   <section class="projects">
     <h2 class="section-title">Projects</h2>
-    <div class="projects-category">
-      <h3 class="category-title">AI-Powered Projects</h3>
+    <div v-for="group in groups" :key="group.key" class="projects-category">
+      <h3 class="category-title">{{ group.title }}</h3>
       <div class="projects-grid">
         <article
-          v-for="(project, index) in aiProjects"
+          v-for="(project, index) in group.projects"
           :key="project.slug"
           class="project-card"
-          :style="{ animationDelay: `${index * 100}ms` }"
+          :style="{ animationDelay: `${(group.offset + index) * 100}ms` }"
         >
           <div class="project-heading">
             <h3>
@@ -22,7 +22,7 @@
                 {{ project.name }}
               </a>
               <span v-else>{{ project.name }}</span>
-              <span v-if="project.wip" class="wip-badge">WIP</span>
+              <span v-if="project.badge" class="status-badge">{{ project.badge }}</span>
             </h3>
             <a
               v-if="project.githubUrl"
@@ -30,7 +30,7 @@
               :href="project.githubUrl"
               target="_blank"
               rel="noopener noreferrer"
-              aria-label="View project on GitHub"
+              :aria-label="`View ${project.name} on GitHub`"
             >
               <svg viewBox="0 0 24 24" class="project-icon" aria-hidden="true">
                 <path
@@ -47,7 +47,7 @@
             rel="noopener noreferrer"
             class="demo-link"
           >
-            View Demo →
+            {{ project.liveLabel ?? 'View Demo' }} →
           </a>
           <span v-else-if="project.demoComingSoon" class="demo-coming-soon">(Demo to come)</span>
           <p class="project-description">
@@ -56,64 +56,7 @@
           <p v-if="project.tech" class="project-meta">
             <span class="tech-label">Tech Stack:</span> {{ project.tech }}
           </p>
-        </article>
-      </div>
-    </div>
-    <div class="projects-category">
-      <h3 class="category-title">Personal Projects</h3>
-      <div class="projects-grid">
-        <article
-          v-for="(project, index) in personalProjects"
-          :key="project.slug"
-          class="project-card"
-          :style="{ animationDelay: `${(aiProjects.length + index) * 100}ms` }"
-        >
-          <div class="project-heading">
-            <h3>
-              <a
-                v-if="project.liveUrl"
-                :href="project.liveUrl"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="project-title-link"
-              >
-                {{ project.name }}
-              </a>
-              <span v-else>{{ project.name }}</span>
-              <span v-if="project.wip" class="wip-badge">WIP</span>
-            </h3>
-            <a
-              v-if="project.githubUrl"
-              class="project-link"
-              :href="project.githubUrl"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="View project on GitHub"
-            >
-              <svg viewBox="0 0 24 24" class="project-icon" aria-hidden="true">
-                <path
-                  fill="currentColor"
-                  d="M12 2C6.5 2 2 6.6 2 12.2c0 4.5 2.9 8.3 6.9 9.6.5.1.7-.2.7-.5v-1.7c-2.8.6-3.4-1.2-3.4-1.2-.4-1.1-.9-1.4-.9-1.4-.8-.6.1-.6.1-.6.9.1 1.4 1 1.4 1 .8 1.4 2.2 1 2.8.8.1-.6.3-1 .6-1.3-2.2-.3-4.4-1.1-4.4-4.9 0-1.1.4-2 1-2.7-.1-.3-.4-1.3.1-2.6 0 0 .8-.3 2.8 1 .8-.2 1.6-.3 2.4-.3.8 0 1.6.1 2.4.3 2-1.3 2.8-1 2.8-1 .5 1.3.2 2.3.1 2.6.6.7 1 1.6 1 2.7 0 3.8-2.3 4.6-4.4 4.9.3.3.6.9.6 1.8v2.6c0 .3.2.6.7.5 4-1.3 6.9-5.1 6.9-9.6C22 6.6 17.5 2 12 2Z"
-                />
-              </svg>
-            </a>
-          </div>
-          <a
-            v-if="project.liveUrl"
-            :href="project.liveUrl"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="demo-link"
-          >
-            View Demo →
-          </a>
-          <span v-else-if="project.demoComingSoon" class="demo-coming-soon">(Demo to come)</span>
-          <p class="project-description">
-            {{ project.description }}
-          </p>
-          <p v-if="project.tech" class="project-meta">
-            <span class="tech-label">Tech Stack:</span> {{ project.tech }}
-          </p>
+          <p v-if="project.updated" class="project-updated">Updated {{ project.updated }}</p>
         </article>
       </div>
     </div>
@@ -121,76 +64,34 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue'
+import { categories, projects, type Project } from '@/data/projects'
+import { githubMeta } from '@/data/githubMeta'
 
-type Project = {
-  slug: string
-  name: string
-  description: string
-  githubUrl?: string
-  liveUrl?: string
-  demoComingSoon?: boolean
-  wip?: boolean
-  tech?: string
-  category: 'ai' | 'personal'
+const formatMonth = (yearMonth: string) =>
+  new Date(`${yearMonth}-01T00:00:00Z`).toLocaleDateString('en-US', {
+    month: 'short',
+    year: 'numeric',
+    timeZone: 'UTC',
+  })
+
+// GitHub links and dates only appear for repos the sync found public.
+const toCard = (project: Project) => {
+  const meta = project.repo ? githubMeta[project.repo] : undefined
+  return {
+    ...project,
+    liveUrl: project.liveUrl || meta?.homepage || undefined,
+    githubUrl: meta ? `https://github.com/monliu99/${project.repo}` : undefined,
+    updated: meta?.pushed ? formatMonth(meta.pushed) : undefined,
+  }
 }
 
-const projects: Project[] = [
-  {
-    slug: 'stealth-startup',
-    name: 'Stealth Startup',
-    description:
-      "Most couples don't lack budgeting tools — they lack a shared way to talk about money. I'm building an AI-native co-pilot for couples' financial planning: shared visibility, AI-generated budgets and reviews, and an assistant grounded in the couple's own data. Currently in alpha with 10 users. Happy to share more in conversation.",
-    wip: true,
-    tech: 'Next.js for the web app, Claude for LLM-powered financial insights and planning, Prisma for the database, Tailwind for styling.',
-    category: 'ai',
-  },
-  {
-    slug: 'greencard-chatbot',
-    name: 'Greencard Chatbot',
-    description:
-      "Immigration guidance is expensive when it's professional and unreliable when it's free. Most applicants aren't lost — they just have specific questions with nowhere good to ask them. This is an AI assistant that searches across official immigration documents, keeps your case details in context, and gives direct answers about forms, timelines, and next steps — without the hourly rate.",
-    githubUrl: 'https://github.com/monliu99/greencard-chatbot',
-    demoComingSoon: true,
-    wip: true,
-    tech: 'Next.js for the web app, Claude for multi-step agentic reasoning, Meilisearch for hybrid RAG search over immigration documents, Neon for the database.',
-    category: 'ai',
-  },
-  {
-    slug: 'loom',
-    name: 'Loom.ai',
-    description:
-      "Most relationship tools are built for sales pipelines, not genuine connections. The real barrier to keeping up with your network isn't memory — it's the activation energy of reaching back out after too long. Loom tracks who you've talked to, how things left off, and when it's time to reconnect. An AI trained on how you write drafts the follow-up so the message actually sounds like you sent it.",
-    githubUrl: 'https://github.com/monliu99/loom',
-    demoComingSoon: true,
-    wip: true,
-    tech: 'Next.js for the web app, Claude with personalized prompting to match your writing voice, Prisma for the database, Tailwind for styling.',
-    category: 'ai',
-  },
-  {
-    slug: 'daily-brew-2-0',
-    name: 'Daily Brew 2.0',
-    description:
-      "Most people spend the one ritual they fully control — their morning — on autopilot. Daily Brew is a small bet that a more intentional choice can shift how the next few hours feel: it reads your mood, checks the weather, and suggests a coffee or tea recipe to match. Built in college and rebuilt years later with AI-powered recommendations, it's a project that started as a curiosity and became a daily habit.",
-    githubUrl: 'https://github.com/monliu99/daily-brew-2.0',
-    liveUrl: 'https://daily-brew-20.vercel.app/',
-    tech: 'TensorFlow.js for on-device ML mood detection, JavaScript for the app logic, HTML/CSS for the interface.',
-    category: 'personal',
-  },
-  {
-    slug: 'mos-library',
-    name: "Mo's Library",
-    description:
-      "The way we store books — by title and author — doesn't match how we remember them: by a line, a feeling, a half-remembered argument. Standard search assumes you know what you're looking for. Mo's Library is a personal search engine built around how memory actually works — fast, forgiving of typos, and useful when all you have is a fragment instead of a title.",
-    githubUrl: 'https://github.com/monliu99/mos-library',
-    liveUrl: 'https://mos-library.vercel.app/',
-    tech: 'Meilisearch for typo-tolerant full-text search, InstantSearch for the search UI, JavaScript for the logic, Vercel for hosting.',
-    category: 'personal',
-  },
-]
-
-const aiProjects = computed(() => projects.filter((p) => p.category === 'ai'))
-const personalProjects = computed(() => projects.filter((p) => p.category === 'personal'))
+let offset = 0
+const groups = categories.map((category) => {
+  const items = projects.filter((p) => p.category === category.key).map(toCard)
+  const group = { ...category, projects: items, offset }
+  offset += items.length
+  return group
+})
 </script>
 
 <style scoped>
@@ -354,11 +255,17 @@ const personalProjects = computed(() => projects.filter((p) => p.category === 'p
   color: #5b7265;
 }
 
+.project-updated {
+  margin: 0.25rem 0 0;
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
+}
+
 .tech-label {
   font-weight: 600;
 }
 
-.wip-badge {
+.status-badge {
   display: inline-block;
   margin-left: 0.4rem;
   padding: 0.1rem 0.4rem;
