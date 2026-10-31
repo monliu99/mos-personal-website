@@ -46,7 +46,7 @@ export const projects: Project[] = [
     slug: 'soup-ai',
     name: 'soup.ai',
     description:
-      "Pet health advice online is easy to find and hard to trust, and the stakes feel high when it's your own animal. soup.ai is a pet health assistant where every answer cites an authoritative veterinary source, and when it can't find one, it says \"I don't know\" instead of guessing. I'm building it largely solo, in preparation for Yale Tsai CITY's Launchpad program this fall.",
+      "Pet health advice online is easy to find and hard to trust, and the stakes feel high when it's your own animal. soup.ai is a pet health assistant where every answer cites an authoritative veterinary source, and when it can't find one, it says \"I don't know\" instead of guessing. I'm building it largely solo, in preparation for Yale Tsai CITY's Fall 2026 Launchpad program.",
     badge: 'Planning',
     tech: 'Planned around Next.js on Vercel, the AI SDK with Claude for the agent, Meilisearch for searching veterinary sources, and Neon for the database.',
     category: 'ai',
@@ -55,7 +55,7 @@ export const projects: Project[] = [
     slug: 'ensemble-transfer-attacks',
     name: 'Ensemble Transfer Attacks',
     description:
-      'Adversarial images crafted against public models often fool unseen models too, and attackers improve their odds by combining several "surrogate" models into one ensemble, which matters for anyone deploying image models. With Connor Kilrain for Yale\'s Trustworthy Deep Learning course, we\'re studying which surrogates actually drive that success. My part attacks every subset of 8 surrogate models (255 combinations), tests each one on 6 held-out target models, and uses Shapley values to measure how much each surrogate contributes on its own and in pairs. Final report due in December.',
+      'Adversarial images crafted against public models often fool unseen models too, and attackers improve their odds by combining several "surrogate" models into one ensemble, which matters for anyone deploying image models. With Connor Kilrain for Yale\'s Trustworthy Deep Learning course, we\'re studying which surrogates actually drive that success. My part attacks every subset of 8 surrogate models (255 combinations), tests each one on 6 held-out target models, and uses Shapley values to measure how much each surrogate contributes on its own and in pairs. Final report due December 2026.',
     repo: 'ensemble-attacks-research',
     badge: 'WIP',
     tech: 'Python and PyTorch for the attack pipeline (MI-FGSM on ImageNet-compatible images), LaTeX for the write-up.',

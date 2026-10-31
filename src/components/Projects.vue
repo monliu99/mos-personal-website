@@ -30,7 +30,7 @@
               :href="project.githubUrl"
               target="_blank"
               rel="noopener noreferrer"
-              aria-label="View project on GitHub"
+              :aria-label="`View ${project.name} on GitHub`"
             >
               <svg viewBox="0 0 24 24" class="project-icon" aria-hidden="true">
                 <path

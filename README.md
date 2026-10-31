@@ -44,8 +44,8 @@ link (the repo's homepage), and "Updated" month come from `src/data/github-meta.
 `npm run build` (run it on its own with `npm run sync:github`). Only public, non-fork repos are
 included, so a private repo never gets a GitHub link. If GitHub can't be reached, the script logs
 `github-meta: WARNING using committed snapshot` and the build uses the committed file. On Vercel,
-an optional `GITHUB_TOKEN` env var (a fine-grained token with public, read-only access) avoids
-GitHub's unauthenticated rate limit.
+set a `GITHUB_TOKEN` env var (a fine-grained token with public, read-only access) so builds aren't
+subject to GitHub's unauthenticated rate limit; without it, check the build log for that warning.
 
 ### Weekly redeploy
 

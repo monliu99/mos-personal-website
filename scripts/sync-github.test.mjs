@@ -1,8 +1,8 @@
 import assert from 'node:assert/strict'
-import { mkdtemp, readFile, stat, writeFile } from 'node:fs/promises'
+import { mkdtemp, readFile, rm, stat, writeFile } from 'node:fs/promises'
 import { tmpdir } from 'node:os'
 import { join } from 'node:path'
-import { test } from 'node:test'
+import { after, test } from 'node:test'
 
 import { sync, toMeta } from './sync-github.mjs'
 
@@ -32,8 +32,12 @@ const repos = [
 ]
 
 const okFetch = (body) => async () => ({ ok: true, status: 200, json: async () => body })
+const tempDirs = []
+after(() => Promise.all(tempDirs.map((dir) => rm(dir, { recursive: true, force: true }))))
 const tempFile = async (contents) => {
-  const file = join(await mkdtemp(join(tmpdir(), 'github-meta-')), 'github-meta.json')
+  const dir = await mkdtemp(join(tmpdir(), 'github-meta-'))
+  tempDirs.push(dir)
+  const file = join(dir, 'github-meta.json')
   if (contents !== undefined) await writeFile(file, contents)
   return file
 }
