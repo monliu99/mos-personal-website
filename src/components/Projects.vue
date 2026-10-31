@@ -25,9 +25,9 @@
               <span v-if="project.badge" class="status-badge">{{ project.badge }}</span>
             </h3>
             <a
-              v-if="project.repo"
+              v-if="project.githubUrl"
               class="project-link"
-              :href="githubUrl(project.repo)"
+              :href="project.githubUrl"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="View project on GitHub"
@@ -56,6 +56,7 @@
           <p v-if="project.tech" class="project-meta">
             <span class="tech-label">Tech Stack:</span> {{ project.tech }}
           </p>
+          <p v-if="project.updated" class="project-updated">Updated {{ project.updated }}</p>
         </article>
       </div>
     </div>
@@ -63,13 +64,30 @@
 </template>
 
 <script setup lang="ts">
-import { categories, projects } from '@/data/projects'
+import { categories, projects, type Project } from '@/data/projects'
+import { githubMeta } from '@/data/githubMeta'
 
-const githubUrl = (repo: string) => `https://github.com/monliu99/${repo}`
+const formatMonth = (yearMonth: string) =>
+  new Date(`${yearMonth}-01T00:00:00Z`).toLocaleDateString('en-US', {
+    month: 'short',
+    year: 'numeric',
+    timeZone: 'UTC',
+  })
+
+// GitHub links and dates only appear for repos the sync found public.
+const toCard = (project: Project) => {
+  const meta = project.repo ? githubMeta[project.repo] : undefined
+  return {
+    ...project,
+    liveUrl: project.liveUrl || meta?.homepage || undefined,
+    githubUrl: meta ? `https://github.com/monliu99/${project.repo}` : undefined,
+    updated: meta?.pushed ? formatMonth(meta.pushed) : undefined,
+  }
+}
 
 let offset = 0
 const groups = categories.map((category) => {
-  const items = projects.filter((p) => p.category === category.key)
+  const items = projects.filter((p) => p.category === category.key).map(toCard)
   const group = { ...category, projects: items, offset }
   offset += items.length
   return group
@@ -235,6 +253,12 @@ const groups = categories.map((category) => {
   margin-top: auto;
   font-size: 0.8rem;
   color: #5b7265;
+}
+
+.project-updated {
+  margin: 0.25rem 0 0;
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
 }
 
 .tech-label {
